@@ -29,7 +29,7 @@ CssnextPlugin.prototype.toTree = function(tree, inputPath, outputPath, inputOpti
 };
 
 module.exports = {
-  name: 'Ember CLI Cssnext',
+  name: 'ember-cli-cssnext',
   project: this.project,
 
   shouldSetupRegistryInIncluded: function() {
@@ -41,8 +41,9 @@ module.exports = {
     var app = this.app;
     var options = (app && app.options && app.options.cssnextOptions) || {};
 
-    if ((options.sourceMap === undefined) && (env === 'development')) {
-      options.sourceMap = true;
+    // Default to creating a sourcemap file in development
+    if ((options.map === undefined) && (env === 'development')) {
+      options.map = { inline: false };
     }
 
     return options;
